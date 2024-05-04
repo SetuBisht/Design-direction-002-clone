@@ -211,10 +211,21 @@ img{
 }
 
 .image_back.bottleIn {
+    opacity: 0;
     animation: rightToLeft 0.5s ease forwards;
 }
 
 .image_front.bottleOut {
+    opacity: 1;
+    animation: leftToRight 0.5s ease forwards;
+}
+.image_back.bottleOut {
+    opacity: 0;
+    animation: rightToLeft 0.5s ease forwards;
+}
+
+.image_front.bottleIn {
+    opacity: 1;
     animation: leftToRight 0.5s ease forwards;
 }
 
@@ -287,18 +298,9 @@ img{
      transition: .3s ease-in-out;
  }
 
- .menu-btn-5 span:nth-child(1)::before {
-     margin-top: -12px;
-
-     -webkit-transition: .3s ease-in-out .3s;
-     -moz-transition: .3s ease-in-out .3s;
-     -o-transition: .3s ease-in-out .3s;
-     transition: .3s ease-in-out .3s;
- }
 
  .menu-btn-5 span:nth-child(1)::after {
      margin-top: 12px;
-
      -webkit-transition: .3s ease-in-out .3s;
      -moz-transition: .3s ease-in-out .3s;
      -o-transition: .3s ease-in-out .3s;
@@ -312,21 +314,20 @@ img{
      width: 0px;
      height: 2px;
      margin-top: 13px;
-
      -webkit-transform: rotate(-45deg);
      -moz-transform: rotate(-45deg);
      -o-transform: rotate(-45deg);
      transform: rotate(-45deg);
-
      -webkit-transition: .3s ease-in-out;
      -moz-transition: .3s ease-in-out;
      -o-transition: .3s ease-in-out;
      transition: .3s ease-in-out;
  }
 
- .menu-btn-5.active span:nth-child(1)::before,
+
  .menu-btn-5.active span:nth-child(1)::after {
      margin-top: 0;
+     background: #000;
  }
 
  .menu-btn-5.active span:nth-child(1) {
@@ -334,16 +335,17 @@ img{
      -moz-transition: .5s ease-in-out .6s;
      -o-transition: .5s ease-in-out .6s;
      transition: .5s ease-in-out .5s;
-
+     background: #000 !important;
      -webkit-transform: rotate(45deg);
      -moz-transform: rotate(45deg);
      -o-transform: rotate(45deg);
      transform: rotate(45deg);
  }
 
+
  .menu-btn-5.active span:nth-child(2) {
      width: 30px;
-
+    background: #000;
      -webkit-transition: .3s ease-in-out .8s;
      -moz-transition: .3s ease-in-out .8s;
      -o-transition: .3s ease-in-out .8s;

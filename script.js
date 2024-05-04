@@ -32,12 +32,15 @@ function initializeHover() {
 
     if (section1Hovered && background1Hovered) {
       clearAllTimeouts();
-      removeEveryClass();
-      orangeB.classList.add("bottleOut");
-      // let timer = setTimeout(() => {
-      //   orangeF.classList.add("bottleIn");
-      // }, 700);
-      timeoutIds.push(timer);
+
+      if (orangeF.classList.contains("bottleOut")) {
+        removeEveryClass();
+        orangeB.classList.add("bottleOut");
+        let timer1 = setTimeout(() => {
+          orangeF.classList.add("bottleIn");
+        }, 700);
+        timeoutIds.push(timer1);
+      }
     }
 
     if (background2Hovered) {
