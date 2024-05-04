@@ -11,12 +11,19 @@ body{
     position: relative;
 }
 .section_1{
-    width: 100%;
+    width: 50%;
     height: 100vh;
+    position: static;
+transform-style: preserve-3d;
+will-change: transform;
 }
 .section_2{
-    width: 100%;
+    right: 0;
+    width: 50%;
     height: 100vh;
+    position: fixed;
+    transform-style: preserve-3d;
+    will-change: transform;
 }
 .background1{
     width: 100%;
@@ -126,7 +133,10 @@ img{
     position: absolute;
     z-index: 2;
     display: block;
-    }
+    opacity: 0;
+    transform: translateY(70px);
+    transition: opacity 0.5s ease, transform 0.7s ease;
+}
 
 .image_back {
     width: 150px;
@@ -160,8 +170,85 @@ img{
     margin-top: 20px;
     margin-bottom: 10px;
 }
+.text-ani2 {
+    width: 30vw;
+    font-family: 'Ageo Regular', sans-serif;
+    color: #fff;
+    font-size: 3vw;
+    line-height: 3.5vw;
+    font-weight: 300;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
 .arrow-left{
     width: 20px;
     margin-top: 10px;
          
+}
+
+.text-ani span {
+    opacity: 0;
+    transform: translateY(50px);
+    /* Initial position below */
+    display: inline-block;
+    /* Make spans behave like blocks */
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    /* Transition for opacity and transform */
+}
+.image_front.animate  {
+    opacity: 1;
+    transform: translateY(0);
+    /* Move to the initial position */
+}
+.text-ani.animate * {
+    opacity: 1;
+    transform: translateY(0);
+    /* Move to the initial position */
+}
+
+
+.text-ani.animate span:nth-child(1) {
+    transition-delay: 0.1s;
+    /* Add a slight delay for the first span */
+}
+
+.text-ani.animate span:nth-child(2) {
+    transition-delay: 0.2s;
+    /* Add a slight delay for the second span */
+}
+.text-ani.animate *:nth-child(3) {
+    transition-delay: 0.3s;
+    /* Add a slight delay for the second span */
+}
+.text-ani.animate *:nth-child(4) {
+  transition-delay: 0.4s; /* Add a slight delay for the second span */
+}
+
+.text-ani.animate *:nth-child(5) {
+  transition-delay: 0.5s; /* Add a slight delay for the second span */
+}
+
+.text-ani.animate *:nth-child(6) {
+  transition-delay: 0.6s; /* Add a slight delay for the second span */
+}
+
+.text-ani.animate *:nth-child(7) {
+    transition-delay: 0.7s;
+    /* Add a slight delay for the second span */
+}
+.text-ani.animate *:nth-child(8) {
+    transition-delay: 0.8s;
+    /* Add a slight delay for the second span */
+}
+.text-ani.animate *:nth-child(9) {
+    transition-delay: 0.9s;
+    /* Add a slight delay for the second span */
+}
+.text-ani.animate *:nth-child(10) {
+    transition-delay: 0.10s;
+    /* Add a slight delay for the second span */
+}
+.text-ani.animate *:nth-child(11) {
+    transition-delay: 0.11s;
+    /* Add a slight delay for the second span */
 }
