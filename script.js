@@ -1,5 +1,66 @@
 let leftComponent = document.querySelector(".section_1");
 let rightComponent = document.querySelector(".section_2");
+let timeoutIds = [];
+
+function initializeHover() {
+  let orangeF = document.querySelector(".orangeF");
+  let orangeB = document.querySelector(".orangeB");
+
+  function removeEveryClass() {
+    orangeF.classList.remove("bottleOut", "bottleIn");
+    orangeB.classList.remove("bottleOut", "bottleIn");
+  }
+
+  document.addEventListener("mouseover", function (event) {
+    let hoveredElements = document.elementsFromPoint(
+      event.clientX,
+      event.clientY
+    );
+
+    // Check for section_1 and background1
+    let section1Hovered = hoveredElements.some((element) =>
+      element.classList.contains("section_1")
+    );
+    let background1Hovered = hoveredElements.some((element) =>
+      element.classList.contains("background1")
+    );
+
+    // Check for image1
+    let background2Hovered = hoveredElements.some((element) =>
+      element.classList.contains("image1")
+    );
+
+    if (section1Hovered && background1Hovered) {
+      clearAllTimeouts();
+      removeEveryClass();
+      orangeB.classList.add("bottleOut");
+      // let timer = setTimeout(() => {
+      //   orangeF.classList.add("bottleIn");
+      // }, 700);
+      timeoutIds.push(timer);
+    }
+
+    if (background2Hovered) {
+      clearAllTimeouts();
+      removeEveryClass();
+      orangeF.classList.add("bottleOut");
+      let timer = setTimeout(() => {
+        orangeB.classList.add("bottleIn");
+      }, 700);
+      timeoutIds.push(timer);
+    }
+  });
+}
+
+function clearAllTimeouts() {
+  timeoutIds.forEach((id) => clearTimeout(id));
+  timeoutIds = [];
+}
+
+initializeHover();
+function menuBtnFunction(menuBtn) {
+  menuBtn.classList.toggle("active");
+}
 function initialize() {
   leftComponent.style.transform = `translateY(0vh)`;
   rightComponent.style.transform = `translateY(-200vh)`;
@@ -14,6 +75,9 @@ function initialize() {
     ele.classList.add("animate");
   });
   text.classList.add("animate");
+  setTimeout(() => {
+    initializeHover();
+  }, 800);
 }
 
 function handleScroll() {
@@ -43,65 +107,3 @@ initialize(); // Call initialize to set initial positions
 
 // Add event listener for scroll event
 window.addEventListener("scroll", handleScroll);
-
-//  <a href="#" class="link-block w-inline-block">
-//                      <h1 class="text-ani"><span style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">A</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">g</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">n</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">t</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">l</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">b</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">l</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">n</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">d</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">o</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">f</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><br><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">f</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">r</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">s</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">h</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">o</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">r</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">a</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">n</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">g</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">a</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">w</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">h</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">o</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">l</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">m</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">a</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">l</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">t</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">c</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">r</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">i</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">s</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">p</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);"> </span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">l</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">a</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">g</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">e</span><span
-//                            style="opacity: 1; transform: matrix(1, 0, 0, 1, 0, 0);">r</span></h1>
-//                            <img
-//                         src="./assets/arroew.png"
-//                         width="20"
-//                          class="arrow">
-//                   </a>
