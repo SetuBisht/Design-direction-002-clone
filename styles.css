@@ -258,18 +258,7 @@ img{
         transform: translateX(-100%);
     }
 }
-@keyframes slideLeftInLeft {
-    0% {
-        transform: translate3D(100%,-200vh,0);
 
-    }
-
-    100% {
-        transform: translate3D(0%,
-            -200vh,
-            0);
-    }
-}
 .slide-in-right {
     animation: slideLeftInLeft 0.5s forwards;
     -webkit-animation: slideLeftInLeft 0.5s forwards;
@@ -279,18 +268,25 @@ img{
     animation: slideLLeftOutRight 0.5s forwards;
     -webkit-animation: slideLLeftOutRight 0.5s forwards;
 }
-@keyframes slideLLeftOutRight {
+@keyframes slideLeftInLeft {
     0% {
-        transform: translate3D(0%,
-            -200vh,
-            0);
+        transform: translateX(100%);
 
     }
 
     100% {
-        transform: translate3D(100%,
-            -200vh,
-            0);
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideLLeftOutRight {
+    0% {
+        transform: translateX(0%);
+
+    }
+
+    100% {
+        transform: translateX(100%);
     }
 }
 @keyframes leftToRight {

@@ -67,22 +67,64 @@ menuBtn.addEventListener("click", (e) => {
 function menuBtnFunction(e) {
   menuBtn.classList.toggle("active");
   if (menuOpen === false) {
-    leftComponent.classList.remove("slide-in");
-    rightComponent.classList.remove("slide-in-right");
-    leftComponent.classList.add("slide-out");
-    rightComponent.classList.add("slide-out-right");
+    animateComponents(-100, 100, false);
     menuOpen = true;
     return;
-  }
-  if (menuOpen === true) {
-    leftComponent.classList.remove("slide-out");
-    rightComponent.classList.remove("slide-out-right");
-    leftComponent.classList.add("slide-in");
-    rightComponent.classList.add("slide-in-right");
+  } else {
+    animateComponents(0, 0, true);
     menuOpen = false;
     return;
   }
 }
+function animateComponents(leftOffset, rightOffset, reverse) {
+  let start = null;
+  const duration = 500; // milliseconds
+
+  // Extract the original transform values
+  const originalTransformLeft = leftComponent.style.transform;
+  const originalTransformRight = rightComponent.style.transform;
+
+  function step(timestamp) {
+    if (!start) start = timestamp;
+    const progress = timestamp - start;
+    const percent = Math.min(progress / duration, 1);
+    const reversedPercent = reverse == true ? 1 - percent : percent; // Reverse percent for the return animation
+
+    // Extract the existing Y-axis translation value from the original transform
+    const leftYOffsetMatch = originalTransformLeft.match(
+      /translate3d\(\s*[^,]+,\s*([^,]+),\s*[^,]+\)/
+    );
+    const leftYOffset = leftYOffsetMatch ? parseFloat(leftYOffsetMatch[1]) : 0;
+
+    const rightYOffsetMatch = originalTransformRight.match(
+      /translate3d\(\s*[^,]+,\s*([^,]+),\s*[^,]+\)/
+    );
+    const rightYOffset = rightYOffsetMatch
+      ? parseFloat(rightYOffsetMatch[1])
+      : 0;
+    let leftPosition;
+    let rightPosition;
+    if (reverse === false) {
+      leftPosition = leftOffset * reversedPercent;
+      rightPosition = rightOffset * reversedPercent;
+    } else {
+      leftPosition = leftOffset + (0 - 100) * reversedPercent;
+      rightPosition = rightOffset + (0 - -100) * reversedPercent;
+    }
+
+    // Update the transform style using translate3D for 3D translation
+    leftComponent.style.transform = `translate3D(${leftPosition}%, ${leftYOffset}vh, 0)`;
+    rightComponent.style.transform = `translate3D(${rightPosition}%, ${rightYOffset}vh, 0)`;
+
+    // Continue the animation until duration is reached
+    if (progress < duration) {
+      window.requestAnimationFrame(step);
+    }
+  }
+
+  window.requestAnimationFrame(step);
+}
+
 function initialize() {
   leftComponent.style.transform = `translate3D(0%,0vh,0)`;
   rightComponent.style.transform = `translate3D(0%,-200vh,0)`;
@@ -102,7 +144,21 @@ function initialize() {
   }, 800);
 }
 
+initialize(); // Call initialize to set initial positions
+
+let isScrolling = false;
+
 function handleScroll() {
+  if (!isScrolling) {
+    isScrolling = true;
+    requestAnimationFrame(function () {
+      updateComponentsPosition();
+      isScrolling = false;
+    });
+  }
+}
+
+function updateComponentsPosition() {
   // Calculate the scroll position
   let scrollPosition = window.scrollY || window.pageYOffset;
 
@@ -125,7 +181,5 @@ function handleScroll() {
   leftComponent.style.transform = `translate3D(0%,${translateYLeft}vh,0)`;
 }
 
-initialize(); // Call initialize to set initial positions
-
-// Add event listener for scroll event
+// Listen for scroll events
 window.addEventListener("scroll", handleScroll);
