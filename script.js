@@ -1,7 +1,8 @@
 let leftComponent = document.querySelector(".section_1");
 let rightComponent = document.querySelector(".section_2");
+let menuBtn = document.querySelector(".menu-btn-5");
 let timeoutIds = [];
-
+let menuOpen = false;
 function initializeHover() {
   let orangeF = document.querySelector(".orangeF");
   let orangeB = document.querySelector(".orangeB");
@@ -31,15 +32,14 @@ function initializeHover() {
     );
 
     if (section1Hovered && background1Hovered) {
-      clearAllTimeouts();
-
       if (orangeF.classList.contains("bottleOut")) {
         removeEveryClass();
-        orangeB.classList.add("bottleOut");
-        let timer1 = setTimeout(() => {
-          orangeF.classList.add("bottleIn");
-        }, 700);
-        timeoutIds.push(timer1);
+        // orangeB.classList.add("bottleOut");
+        // let timer1 = setTimeout(() => {
+        //   console.log("dasdasdasd");
+        //   orangeF.classList.add("bottleIn");
+        // }, 700);
+        // timeoutIds.push(timer1);
       }
     }
 
@@ -61,12 +61,31 @@ function clearAllTimeouts() {
 }
 
 initializeHover();
-function menuBtnFunction(menuBtn) {
+menuBtn.addEventListener("click", (e) => {
+  menuBtnFunction(e);
+});
+function menuBtnFunction(e) {
   menuBtn.classList.toggle("active");
+  if (menuOpen === false) {
+    leftComponent.classList.remove("slide-in");
+    rightComponent.classList.remove("slide-in-right");
+    leftComponent.classList.add("slide-out");
+    rightComponent.classList.add("slide-out-right");
+    menuOpen = true;
+    return;
+  }
+  if (menuOpen === true) {
+    leftComponent.classList.remove("slide-out");
+    rightComponent.classList.remove("slide-out-right");
+    leftComponent.classList.add("slide-in");
+    rightComponent.classList.add("slide-in-right");
+    menuOpen = false;
+    return;
+  }
 }
 function initialize() {
-  leftComponent.style.transform = `translateY(0vh)`;
-  rightComponent.style.transform = `translateY(-200vh)`;
+  leftComponent.style.transform = `translate3D(0%,0vh,0)`;
+  rightComponent.style.transform = `translate3D(0%,-200vh,0)`;
   let spans = document.querySelectorAll(".text-ani span");
   spans.forEach((span, index) => {
     span.style.transitionDelay = `${index * 0.05}s`; // Increase delay by 0.1s for each span
@@ -102,8 +121,8 @@ function handleScroll() {
   let translateYLeft = 200 * percentageScrolled; // For leftComponent
 
   // Update the transform style of both components
-  rightComponent.style.transform = `translateY(${translateYRight}vh)`;
-  leftComponent.style.transform = `translateY(${translateYLeft}vh)`;
+  rightComponent.style.transform = `translate3D(0%,${translateYRight}vh,0)`;
+  leftComponent.style.transform = `translate3D(0%,${translateYLeft}vh,0)`;
 }
 
 initialize(); // Call initialize to set initial positions
