@@ -36,10 +36,10 @@ function initializeHover() {
         clearAllTimeouts();
         orangeB.classList.remove("bottleOut", "bottleIn");
         orangeB.classList.add("bottleOut");
-        // let timer1 = setTimeout(() => {
-        //   orangeF.classList.add("bottleOut");
-        // orangeF.classList.remove("bottleOut", "bottleIn");
-        // }, 700);
+        let timer1 = setTimeout(() => {
+          orangeF.classList.add("bottleIn");
+          orangeF.classList.remove("bottleOut");
+        }, 700);
         timeoutIds.push(timer1);
       }
     }
@@ -53,7 +53,7 @@ function initializeHover() {
       orangeF.classList.add("bottleOut");
       let timer = setTimeout(() => {
         orangeB.classList.add("bottleIn");
-        orangeB.classList.add("bottleIn");
+        orangeB.classList.remove("bottleOut");
       }, 700);
       timeoutIds.push(timer);
     }

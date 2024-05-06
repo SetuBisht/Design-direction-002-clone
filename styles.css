@@ -221,12 +221,12 @@ img{
 }
 .image_back.bottleOut {
     opacity: 0;
-    animation: rightToLeft 0.5s ease forwards;
+    animation: rightToLeftReverse 0.5s ease forwards;
 }
 
 .image_front.bottleIn {
     opacity: 1;
-    animation: leftToRight 0.5s ease forwards;
+    animation: leftToRightReverse 0.5s ease forwards;
 }
 .slide-in {
     animation: slideInLeft 0.5s forwards;
@@ -344,7 +344,7 @@ img{
     }
 
     100% {
-        transform: rotate(5deg);
+        transform: rotate(0deg);
         opacity: 1;
     }
 }
@@ -367,7 +367,7 @@ img{
 
     100% {
         transform: rotate(50deg);
-        opacity: 0.3;
+        opacity: 0;
     }
 }
 
