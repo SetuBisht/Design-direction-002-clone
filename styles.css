@@ -79,7 +79,7 @@ a{
     text-decoration: none;
 }
 .text-ani{
-    width: 30vw;
+    width: 35vw;
     font-family: 'Poppins', sans-serif;
     color: #fff;
     font-size: 3vw;
@@ -327,6 +327,47 @@ img{
     100% {
         transform: rotate(0deg);
         opacity: 1;
+    }
+}
+@keyframes leftToRightReverse {
+    0% {
+        transform: rotate(-50deg);
+        opacity: 0;
+    }
+
+    40% {
+        transform: rotate(-20deg);
+    }
+
+    70% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(5deg);
+        opacity: 1;
+    }
+}
+
+@keyframes rightToLeftReverse {
+    0% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+
+    30% {
+        transform: rotate(-10deg);
+        opacity: 0.8;
+    }
+
+    60% {
+        transform: rotate(20deg);
+        opacity: 0.6;
+    }
+
+    100% {
+        transform: rotate(50deg);
+        opacity: 0.3;
     }
 }
 

@@ -32,22 +32,27 @@ function initializeHover() {
     );
 
     if (section1Hovered && background1Hovered) {
-      if (orangeF.classList.contains("bottleOut")) {
-        removeEveryClass();
-        // orangeB.classList.add("bottleOut");
+      if (orangeB.classList.contains("bottleIn")) {
+        clearAllTimeouts();
+        orangeB.classList.remove("bottleOut", "bottleIn");
+        orangeB.classList.add("bottleOut");
         // let timer1 = setTimeout(() => {
-        //   console.log("dasdasdasd");
-        //   orangeF.classList.add("bottleIn");
+        //   orangeF.classList.add("bottleOut");
+        // orangeF.classList.remove("bottleOut", "bottleIn");
         // }, 700);
-        // timeoutIds.push(timer1);
+        timeoutIds.push(timer1);
       }
     }
 
     if (background2Hovered) {
+      if (orangeF.classList.contains("bottleOut")) {
+        return;
+      }
       clearAllTimeouts();
       removeEveryClass();
       orangeF.classList.add("bottleOut");
       let timer = setTimeout(() => {
+        orangeB.classList.add("bottleIn");
         orangeB.classList.add("bottleIn");
       }, 700);
       timeoutIds.push(timer);
@@ -140,6 +145,11 @@ function initialize() {
   });
   text.classList.add("animate");
   setTimeout(() => {
+    image_front.forEach((ele) => {
+      ele.classList.remove("animate");
+      ele.style.opacity = 1;
+      ele.style.transform = `translateY(0)`;
+    });
     initializeHover();
   }, 800);
 }
