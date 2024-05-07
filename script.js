@@ -123,7 +123,7 @@ function initializeHover() {
     let background2HoveredLime = hoveredElements.some((element) =>
       element.classList.contains("image3")
     );
-    if (section1HoveredLLime && background1HoveredLime) {
+    if (background1HoveredLime) {
       if (limeB.classList.contains("bottleIn")) {
         clearAllTimeouts();
         limeB.classList.remove("bottleOut", "bottleIn");
@@ -258,7 +258,6 @@ function handleScroll() {
     });
   }
 }
-
 function updateComponentsPosition() {
   // Calculate the scroll position
   let scrollPosition = window.scrollY || window.pageYOffset;
@@ -275,7 +274,7 @@ function updateComponentsPosition() {
 
   // Map the percentage scrolled to the desired range for translation
   let translateYRight = -200 * (1 - percentageScrolled); // For rightComponent, reverse
-  let translateYLeft = 200 * percentageScrolled; // For leftComponent
+  let translateYLeft = 100 * percentageScrolled; // For leftComponent, slower
 
   // Update the transform style of both components
   rightComponent.style.transform = `translate3D(0%,${translateYRight}vh,0)`;
