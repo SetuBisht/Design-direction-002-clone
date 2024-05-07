@@ -7,9 +7,19 @@ function initializeHover() {
   let orangeF = document.querySelector(".orangeF");
   let orangeB = document.querySelector(".orangeB");
 
+  let lemonF = document.querySelector(".lemonf");
+  let lemonB = document.querySelector(".lemonb");
+
+  let limeF = document.querySelector(".limef");
+  let limeB = document.querySelector(".limeb");
+
   function removeEveryClass() {
     orangeF.classList.remove("bottleOut", "bottleIn");
     orangeB.classList.remove("bottleOut", "bottleIn");
+    lemonF.classList.remove("bottleOut", "bottleIn");
+    lemonB.classList.remove("bottleOut", "bottleIn");
+    limeF.classList.remove("bottleOut", "bottleIn");
+    limeB.classList.remove("bottleOut", "bottleIn");
   }
 
   document.addEventListener("mouseover", function (event) {
@@ -19,6 +29,7 @@ function initializeHover() {
     );
 
     // Check for section_1 and background1
+    //orange
     let section1Hovered = hoveredElements.some((element) =>
       element.classList.contains("section_1")
     );
@@ -54,6 +65,86 @@ function initializeHover() {
       let timer = setTimeout(() => {
         orangeB.classList.add("bottleIn");
         orangeB.classList.remove("bottleOut");
+      }, 700);
+      timeoutIds.push(timer);
+    }
+    //lemon
+    let section1HoveredLLemon = hoveredElements.some((element) =>
+      element.classList.contains("section_2")
+    );
+    let background1HoveredLemon = hoveredElements.some((element) =>
+      element.classList.contains("background3")
+    );
+    console.log(hoveredElements, "hoveredElements");
+    // Check for image2
+    let background2HoveredLemon = hoveredElements.some((element) =>
+      element.classList.contains("image2")
+    );
+    console.log(
+      background1HoveredLemon,
+      section1HoveredLLemon,
+      "background2HoveredLemon"
+    );
+    if (background1HoveredLemon) {
+      if (lemonB.classList.contains("bottleIn")) {
+        clearAllTimeouts();
+        lemonB.classList.remove("bottleOut", "bottleIn");
+        lemonB.classList.add("bottleOut");
+        let timer1 = setTimeout(() => {
+          lemonF.classList.add("bottleIn");
+          lemonF.classList.remove("bottleOut");
+        }, 700);
+        timeoutIds.push(timer1);
+      }
+    }
+
+    if (background2HoveredLemon) {
+      if (lemonF.classList.contains("bottleOut")) {
+        return;
+      }
+      clearAllTimeouts();
+      removeEveryClass();
+      lemonF.classList.add("bottleOut");
+      let timer = setTimeout(() => {
+        lemonB.classList.add("bottleIn");
+        lemonB.classList.remove("bottleOut");
+      }, 700);
+      timeoutIds.push(timer);
+    }
+    //lime
+    let section1HoveredLLime = hoveredElements.some((element) =>
+      element.classList.contains("section_2")
+    );
+    let background1HoveredLime = hoveredElements.some((element) =>
+      element.classList.contains("background2")
+    );
+
+    // Check for image2
+    let background2HoveredLime = hoveredElements.some((element) =>
+      element.classList.contains("image3")
+    );
+    if (section1HoveredLLime && background1HoveredLime) {
+      if (limeB.classList.contains("bottleIn")) {
+        clearAllTimeouts();
+        limeB.classList.remove("bottleOut", "bottleIn");
+        limeB.classList.add("bottleOut");
+        let timer1 = setTimeout(() => {
+          limeF.classList.add("bottleIn");
+          limeF.classList.remove("bottleOut");
+        }, 700);
+        timeoutIds.push(timer1);
+      }
+    }
+    if (background2HoveredLime) {
+      if (limeF.classList.contains("bottleOut")) {
+        return;
+      }
+      clearAllTimeouts();
+      removeEveryClass();
+      limeF.classList.add("bottleOut");
+      let timer = setTimeout(() => {
+        limeB.classList.add("bottleIn");
+        limeB.classList.remove("bottleOut");
       }, 700);
       timeoutIds.push(timer);
     }
