@@ -1,6 +1,7 @@
 let leftComponent = document.querySelector(".section_1");
 let rightComponent = document.querySelector(".section_2");
 let menuBtn = document.querySelector(".menu-btn-5");
+let root = document.querySelector(".root-container");
 let timeoutIds = [];
 let menuOpen = false;
 function initializeHover() {
@@ -165,10 +166,12 @@ function menuBtnFunction(e) {
   if (menuOpen === false) {
     animateComponents(-100, 100, false);
     menuOpen = true;
+    document.body.classList.add("no-scroll");
     return;
   } else {
     animateComponents(0, 0, true);
     menuOpen = false;
+    document.body.classList.remove("no-scroll");
     return;
   }
 }
@@ -259,6 +262,8 @@ function handleScroll() {
   }
 }
 function updateComponentsPosition() {
+  console.log(menuOpen, "menuOpen");
+  if (menuOpen === true) return;
   // Calculate the scroll position
   let scrollPosition = window.scrollY || window.pageYOffset;
 
